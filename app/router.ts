@@ -5,6 +5,8 @@ import { staticFiles } from 'remix/middleware/static'
 
 import controller from './actions/controller.tsx'
 import projectsController from './actions/projects/controller.tsx'
+import projectsNewController from './actions/projects/new/controller.tsx'
+import projectsEditController from './actions/projects/edit/controller.tsx'
 import albumsController from './actions/albums/controller.tsx'
 import albumsEditController from './actions/albums/edit/controller.tsx'
 
@@ -27,6 +29,8 @@ declare module "remix" {
 
 router.map(routes, controller)
 router.map(routes.projects, projectsController)
+router.map(routes.projects.new, projectsNewController)
+router.map(routes.projects.edit, projectsEditController)
 router.map(routes.albums, albumsController)
 router.map(routes.albums.edit, albumsEditController);
 

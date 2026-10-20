@@ -1,4 +1,5 @@
 import { createController } from "remix/router";
+import { redirect } from "remix/response/redirect";
 
 import { projects } from "../../data/tables.ts";
 import { routes } from "../../routes.ts";
@@ -21,6 +22,16 @@ export default createController(routes.projects, {
       }
 
       return context.render(<ProjectShowPage project={project} />);
+    },
+    async destroy(context) {
+      let project = await context.db.find(projects, context.params.projectId);
+
+      if (project === null) {
+        return new Response("Project not found", { status: 404 });
+      }
+
+      await context.db.delete(projects, project.id);
+      return redirect(routes.projects.index.href(), 303);
     },
   },
 });

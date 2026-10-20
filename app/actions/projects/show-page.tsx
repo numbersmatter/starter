@@ -23,6 +23,12 @@ export function ProjectShowPage(handle: Handle<{ project: Project }>) {
             Created {new Date(project.created_at).toLocaleString()} · Updated{" "}
             {new Date(project.updated_at).toLocaleString()}
           </p>
+          <p>
+            <a href={routes.projects.edit.index.href({ projectId: project.id })}>Edit</a>
+          </p>
+          <form method="post" action={routes.projects.destroy.href({ projectId: project.id })}>
+            <button type="submit">Delete project</button>
+          </form>
         </main>
       </Document>
     );

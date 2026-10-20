@@ -14,6 +14,9 @@ export function ProjectListPage(handle: Handle<{ projects: Project[] }>) {
           mix={css({ maxWidth: "44rem", margin: "0 auto", padding: "4rem 1.5rem" })}
         >
           <h1>Projects</h1>
+          <p>
+            <a href={routes.projects.new.index.href()}>New project</a>
+          </p>
           {projects.length === 0 ? (
             <p>No projects yet.</p>
           ) : (
