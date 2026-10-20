@@ -8,11 +8,12 @@ import albumsController from './actions/albums/controller.tsx'
 import albumsEditController from './actions/albums/edit/controller.tsx'
 
 import { assets } from './assets.ts'
+import { loadDatabase } from './middleware/database.ts'
 import { routes } from './routes.ts'
 
 
 export const router = createRouter({
-  middleware: [staticFiles("./public", { index: false }), formData(), render({assets})],
+  middleware: [staticFiles("./public", { index: false }), loadDatabase(), formData(), render({assets})],
 });
 
 export type AppContext = RouterContext<typeof router>;
